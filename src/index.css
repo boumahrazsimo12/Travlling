@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-arabic: "Cairo", system-ui, sans-serif;
+
+  /* Morocco-inspired palette */
+  --color-sand-50: #fdf8f1;
+  --color-sand-100: #faf0e0;
+  --color-sand-200: #f4dfbd;
+  --color-sand-300: #ebc894;
+  --color-sand-400: #dfaa66;
+  --color-sand-500: #d48e42;
+
+  --color-terracotta-50: #fdf3ef;
+  --color-terracotta-100: #fbe3d7;
+  --color-terracotta-200: #f5c0a6;
+  --color-terracotta-300: #ec9469;
+  --color-terracotta-400: #e36d3d;
+  --color-terracotta-500: #c9522a;
+  --color-terracotta-600: #a93d1f;
+  --color-terracotta-700: #853118;
+  --color-terracotta-800: #5d2312;
+
+  --color-saffron-400: #f5b841;
+  --color-saffron-500: #e9a024;
+  --color-saffron-600: #c7851b;
+
+  --color-majorelle-400: #7a8fe0;
+  --color-majorelle-500: #4a63c9;
+  --color-majorelle-600: #2f4ba8;
+  --color-majorelle-700: #223782;
+
+  --color-emerald-ma-500: #2d8a6a;
+  --color-emerald-ma-600: #1f6b51;
+
+  --color-night-800: #1a1523;
+  --color-night-900: #0f0b18;
+  --color-night-950: #070510;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-sand-50);
+    color: #1a1523;
+    -webkit-font-smoothing: antialiased;
+  }
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+  .dark body {
+    background: var(--color-night-950);
+    color: #faf0e0;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4 {
+    font-family: var(--font-arabic);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
+
+  .moroccan-pattern {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(233, 160, 36, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(201, 82, 42, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(74, 99, 201, 0.05) 0%, transparent 50%);
+  }
+  .dark .moroccan-pattern {
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(233, 160, 36, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(201, 82, 42, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(74, 99, 201, 0.1) 0%, transparent 50%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #c9522a 0%, #e9a024 50%, #4a63c9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .dark .glass {
+    background: rgba(26, 21, 35, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(233, 160, 36, 0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg,
+      rgba(201, 82, 42, 0.95) 0%,
+      rgba(233, 160, 36, 0.85) 50%,
+      rgba(74, 99, 201, 0.9) 100%);
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #faf0e0;
+}
+.dark .leaflet-container {
+  background: #1a1523;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  font-family: var(--font-sans);
+}
+.dark .leaflet-popup-content-wrapper,
+.dark .leaflet-popup-tip {
+  background: #1a1523;
+  color: #faf0e0;
+}
